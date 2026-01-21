@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Core
@@ -56,10 +53,12 @@ namespace Assets.Scripts.Core
 
             Debug.Log("Игрок вылечен на: " + healAmount + ". Здоровье: " + health);
         }
+
         public List<Item> GetInventory()
         {
             return inventory;
         }
+
         public void AddItem(Item item)
         {
             if (item == null) return;
@@ -67,6 +66,7 @@ namespace Assets.Scripts.Core
             inventory.Add(item);
             Debug.Log("Предмет добавлен в инвентарь: " + item.GetName());
         }
+
         public void UseItem(Item item)
         {
             if (item == null) return;
@@ -74,11 +74,11 @@ namespace Assets.Scripts.Core
             item.Use(this);
             Debug.Log("Использован предмет: " + item.GetName());
         }
+
         public void RemoveItem(Item item)
         {
             inventory.Remove(item);
             Debug.Log("Предмет удален: " + item.GetName());
         }
-
     }
 }

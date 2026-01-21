@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameObject playerPrefab;
     public Vector3 defaultSpawnPosition = Vector3.zero;
-
+    public GameObject uiPrefab;
     private GameObject currentPlayer;
 
     void Awake()
@@ -31,7 +31,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Загружена сцена: " + scene.name);
 
-        // Удаляем старого игрока если он есть
+        if (GameObject.FindObjectOfType<Canvas>() == null && uiPrefab != null)
+        {
+            Instantiate(uiPrefab);
+        }
+
         if (currentPlayer != null)
         {
             Destroy(currentPlayer);
@@ -39,7 +43,6 @@ public class GameManager : MonoBehaviour
 
         SpawnPlayer();
     }
-
     void SpawnPlayer()
     {
         GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
