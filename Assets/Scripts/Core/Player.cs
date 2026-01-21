@@ -67,7 +67,18 @@ namespace Assets.Scripts.Core
             inventory.Add(item);
             Debug.Log("Предмет добавлен в инвентарь: " + item.GetName());
         }
+        public void UseItem(Item item)
+        {
+            if (item == null) return;
 
-        
+            item.Use(this);
+            Debug.Log("Использован предмет: " + item.GetName());
+        }
+        public void RemoveItem(Item item)
+        {
+            inventory.Remove(item);
+            Debug.Log("Предмет удален: " + item.GetName());
+        }
+
     }
 }

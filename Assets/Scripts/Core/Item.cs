@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private string itemName = "Предмет";
-    private string description = "Описание";
+    public string itemName = "Предмет";
+    public string description = "Описание";
 
     public string GetName()
     {
