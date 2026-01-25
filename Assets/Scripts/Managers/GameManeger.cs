@@ -28,7 +28,15 @@ public class GameManager : MonoBehaviour
 
     public void SaveInventory(List<Item> inventory)
     {
-        playerInventory = new List<Item>(inventory);
+        playerInventory.Clear();
+
+        foreach (Item item in inventory)
+        {
+            Item savedItem = Instantiate(item);
+            DontDestroyOnLoad(savedItem.gameObject);
+            savedItem.gameObject.SetActive(false);
+            playerInventory.Add(savedItem);
+        }
     }
 
     public List<Item> LoadInventory()
@@ -90,5 +98,16 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
+    }
+    void OnApplicationQuit()
+    {
+        foreach (Item item in playerInventory)
+        {
+            if (item != null)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+        playerInventory.Clear();
     }
 }

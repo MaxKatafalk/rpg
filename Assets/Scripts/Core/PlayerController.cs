@@ -28,8 +28,29 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            UseItem();
+            UseFirstPotion();
         }
+    }
+
+    void UseFirstPotion()
+    {
+        var inventory = player.GetInventory();
+        if (inventory.Count == 0)
+        {
+            Debug.Log("Инвентарь пуст");
+            return;
+        }
+
+        foreach (Item item in inventory)
+        {
+            if (item is PotionItem potion)
+            {
+                player.UseItem(potion);
+                return;
+            }
+        }
+
+        Debug.Log("Нет зелий в инвентаре");
     }
 
     void HandleMovement()
@@ -64,8 +85,13 @@ public class PlayerController : MonoBehaviour
 
         if (closestItem != null)
         {
-            player.AddItem(closestItem);
+            Item itemCopy = Instantiate(closestItem);
+            itemCopy.gameObject.SetActive(false);
+            DontDestroyOnLoad(itemCopy.gameObject);
+
+            player.AddItem(itemCopy);
             closestItem.gameObject.SetActive(false);
+
             Debug.Log("Подобран предмет: " + closestItem.GetName());
         }
     }

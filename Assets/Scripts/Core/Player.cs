@@ -30,7 +30,9 @@ namespace Assets.Scripts.Core
             {
                 health = GameManager.Instance.playerHealth;
 
-                inventory = GameManager.Instance.LoadInventory();
+                var savedInventory = GameManager.Instance.LoadInventory();
+                inventory.Clear();
+                inventory.AddRange(savedInventory);
             }
             else
             {

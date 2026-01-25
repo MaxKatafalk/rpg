@@ -154,7 +154,7 @@ MonoBehaviour:
   description: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
   isInteractable: 1
   isOpen: 0
-  containedItem: {fileID: 0}
+  containedItem: {fileID: 578250185}
 --- !u!212 &39294245
 SpriteRenderer:
   serializedVersion: 2
@@ -205,7 +205,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.509434, g: 0.24516153, b: 0.21867214, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1998,7 +1998,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

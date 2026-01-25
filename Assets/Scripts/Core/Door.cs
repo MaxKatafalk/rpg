@@ -46,11 +46,15 @@ public class Door : InteractableObject
     {
         if (!string.IsNullOrEmpty(targetSceneName))
         {
-            // Сохраняем данные игрока
             PlayerPrefs.SetInt("PlayerHealth", player.GetHealth());
             PlayerPrefs.SetFloat("PlayerPosX", playerSpawnPosition.x);
             PlayerPrefs.SetFloat("PlayerPosY", playerSpawnPosition.y);
             PlayerPrefs.Save();
+
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.SaveInventory(player.GetInventory());
+            }
 
             Debug.Log("Переход в сцену: " + targetSceneName);
             SceneManager.LoadScene(targetSceneName);
