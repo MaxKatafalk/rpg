@@ -26,7 +26,16 @@ namespace Assets.Scripts.Core
 
         void Start()
         {
-            Debug.Log("Игрок создан. Здоровье: " + health);
+            if (GameManager.Instance != null)
+            {
+                health = GameManager.Instance.playerHealth;
+
+                inventory = GameManager.Instance.LoadInventory();
+            }
+            else
+            {
+                Debug.Log("Игрок создан. Здоровье: " + health);
+            }
         }
 
         public void TakeDamage(int damage)
@@ -65,6 +74,10 @@ namespace Assets.Scripts.Core
 
             inventory.Add(item);
             Debug.Log("Предмет добавлен в инвентарь: " + item.GetName());
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.SaveInventory(inventory);
+            }
         }
 
         public void UseItem(Item item)
@@ -79,6 +92,10 @@ namespace Assets.Scripts.Core
         {
             inventory.Remove(item);
             Debug.Log("Предмет удален: " + item.GetName());
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.SaveInventory(inventory);
+            }
         }
     }
 }

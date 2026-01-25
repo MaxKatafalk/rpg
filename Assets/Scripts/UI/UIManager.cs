@@ -55,7 +55,8 @@ public class UIManager : MonoBehaviour
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvasObject.AddComponent<CanvasScaler>();
             canvasObject.AddComponent<GraphicRaycaster>();
-            Debug.Log("Canvas создан");
+
+            DontDestroyOnLoad(canvasObject);
         }
         else
         {
@@ -156,7 +157,7 @@ public class UIManager : MonoBehaviour
         if (inventoryText != null)
         {
             var inventory = player.GetInventory();
-            if (inventory.Count == 0)
+            if (inventory == null || inventory.Count == 0)
             {
                 inventoryText.text = "Инвентарь: пусто";
             }
@@ -164,17 +165,23 @@ public class UIManager : MonoBehaviour
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Инвентарь: ");
-
+                bool first = true;
                 for (int i = 0; i < inventory.Count; i++)
                 {
-                    sb.Append(inventory[i].GetName());
-                    if (i < inventory.Count - 1)
-                    {
-                        sb.Append(", ");
-                    }
+                    var it = inventory[i];
+                    if (it == null) continue;
+                    if (!first) sb.Append(", ");
+                    sb.Append(it.GetName());
+                    first = false;
                 }
-
-                inventoryText.text = sb.ToString();
+                if (first)
+                {
+                    inventoryText.text = "Инвентарь: пусто";
+                }
+                else
+                {
+                    inventoryText.text = sb.ToString();
+                }
             }
         }
     }

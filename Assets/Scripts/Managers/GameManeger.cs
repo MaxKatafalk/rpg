@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +10,8 @@ public class GameManager : MonoBehaviour
     public Vector3 defaultSpawnPosition = Vector3.zero;
     public GameObject uiPrefab;
     private GameObject currentPlayer;
-
+    public List<Item> playerInventory = new List<Item>();
+    public int playerHealth = 100;
     void Awake()
     {
         if (Instance == null)
@@ -21,6 +24,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SaveInventory(List<Item> inventory)
+    {
+        playerInventory = new List<Item>(inventory);
+    }
+
+    public List<Item> LoadInventory()
+    {
+        return new List<Item>(playerInventory);
     }
 
     void Start()
